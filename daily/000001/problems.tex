@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 
-\usepackage{amsmath}
+\usepackage{amsmath, amsfonts}
 
 \begin{document}
 
@@ -26,6 +26,19 @@ znz
         p \equiv 3 \mod{4}
         \]
         A Euclid-style argument works, but simply taking the product of known \(3\bmod4\) primes and adding \(1\) does not give the useful construction directly. Try to determine what number to construct and why at least one of its prime divisors must be \(3\bmod4\).
+\item Multiplicative structure. Define
+        \[
+        d(n)=\# \{d \in \mathbb{N} : d \mid n\}.
+        \]
+        Prove that if
+        \[
+        \gcd(m, n)=1,
+        \]
+        then
+        \[
+        d(mn)=d(m)d(n).
+        \]
+        Try to formulate this proof as bijection rather than using prime-factorization formula for $d(n)$.
 \end{enumerate}
 
 \end{document}
