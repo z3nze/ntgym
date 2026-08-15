@@ -1,0 +1,5 @@
+# In numbered daily folders, track only LaTeX sources and PDFs.
+/daily/[0-9][0-9][0-9][0-9][0-9][0-9]/**
+!/daily/[0-9][0-9][0-9][0-9][0-9][0-9]/**/*.tex
+!/daily/[0-9][0-9][0-9][0-9][0-9][0-9]/**/*.pdf
+
