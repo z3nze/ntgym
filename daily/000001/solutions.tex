@@ -84,6 +84,111 @@ znz
 
         Since $P'$ is not divisible by any elements of $S$ but it must have a factor that satisfies conditions above it means contradiction, therefore $S$ is not finite.
   \item
+        \[
+        \begin{gathered}
+          D(n) = \{d \in \mathbb{N} \colon d \mid n\} \\
+          d(n) = \#D(n) \\
+          D(n) \times D(m) = \{(x, y) \colon x \mid n, y \mid m, x \in \mathbb{N}, y \in \mathbb{N} \}
+        \end{gathered}
+        \]
+
+        Need to prove the following:
+
+        \[
+        \begin{gathered}
+        f \colon D(n) \times D(m) \xrightarrow{\sim} D(nm) \\
+        f(x,y) = xy \\
+        x \mid n, y \mid m \implies n=xr, m=ys \implies nm=xy(rs) \implies xy | nm
+        \end{gathered}
+        \]
+
+        \begin{enumerate}
+          \item for injection suppose that it doesn't hold:
+                \[
+                \begin{gathered}
+                  \exists (x, y), (x', y')\colon (x \neq x' \text{ or } \ y \neq y') \text{ and } xy=x'y' \\
+                \end{gathered}
+                \]
+
+                To rule out case $x = x', y \neq y'$ (and symmetric one):
+                \[
+                \begin{gathered}
+                  \begin{cases}
+                    xy = x'y' \\
+                    x = x'
+                  \end{cases}
+                  \implies y = y'
+                \end{gathered}
+                \]
+                contradiction, therefore $x \neq x'$ and $y \neq y'$.
+
+
+                Then
+
+                \[
+                \begin{gathered}
+                  \text{let } P=\{p \in \mathbb{N}: p \text{ is prime}, p \mid nm\}=\{p_{1}\ldots p_{k}\} \\
+                  x=\prod_{i=1}^{k}p_{i}^{a_{i}} \qquad                  y=\prod_{i=1}^{k}p_{i}^{b_{i}} \qquad                  x'=\prod_{i=1}^{k}p_{i}^{a'_{i}} \qquad
+                  y'=\prod_{i=1}^{k}p_{i}^{b'_{i}} \\
+                  \forall i \colon a_{i}+b_{i}=a'_{i}+b'_{i} \\
+                  \exists i \colon a_{i}\neq a'_{i} \\
+                  \gcd(n,m)=1 \implies
+                  \forall i \colon
+                  \begin{cases}
+                    a_{i} = 0 \lor b_{i}=0 \\
+                    a'_{i}= 0 \lor b'_{i}=0
+                  \end{cases}
+                \end{gathered}
+                \]
+
+                therefore
+
+                \[
+                \begin{gathered}
+                  \text{either } \forall i: a_{i} = a'_{i}, b_{i} = b'_{i} \\
+                  \text{or } \exists i: a_{i} > 0, b_{i} = 0, a'_{i}=0, b'_{i}>0 \\
+                  \text{or} \exists i: a_{i} = 0, b_{i} > 0, a'_{i}>0, b'_{i}=0
+                \end{gathered}
+                \]
+
+                but then (assume second case without loss of generality):
+
+                \[
+                \begin{gathered}
+                  p_{i} \mid \gcd(x, y') \\
+                  x \mid n, y' \mid m \implies \gcd(x, y') \mid \gcd(n, m)\\
+                  p_{i} \mid \gcd(n, m)
+                \end{gathered}
+                \]
+
+                contradiction. Therefore $f$ is injection.
+          \item for surjection consider arbitrary $z \mid nm$:
+                \[
+                \begin{gathered}
+                  z=\prod_{i=1}^{k}p_{i}^{c_{i}} \qquad
+                  n=\prod_{i=1}^{k}p_{i}^{a_{i}} \qquad
+                  m=\prod_{i=1}^{k}p_{i}^{b_{i}}
+                \end{gathered}
+                \]
+
+                then
+                \[
+                \begin{gathered}
+                  x=\prod_{i=1}^{k}p_{i}^{\min(a_{i}, c_{i})} \qquad
+                  y=\prod_{i=1}^{k}p_{i}^{\min(b_{i}, c_{i})} \\
+                  x \mid n, y \mid m \\
+                  \begin{cases}
+                    \gcd(n,m)=1 \implies \forall i: a_{i}=0 \text{ or } b_{i}=0\\
+                    z|nm \implies \forall i: c_{i} \leq a_{i} + b_{i}
+                  \end{cases}
+                  \implies \text{xy=z}
+                \end{gathered}
+                \]
+
+                therefore for every arbitrary $z$ exists $(x, y)$ such that $f(x,y)=z$, $f$ is surjection.
+        \end{enumerate}
+
+        Since $f$ is both injection and surjection it's a bijection.
 
 \end{enumerate}
 
