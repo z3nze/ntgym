@@ -16,6 +16,70 @@ znz
 \medskip
 
 \begin{enumerate}
+  \item
+        Extend $\deg(0) = -\infty$.
+
+        \[
+        \begin{gathered}
+          f = qg + r \\
+          f(t) = f_{d}t^{d} + \cdots, f_d \neq 0 \\
+          q(t) = a_{n}t^{n} + \cdots, a_n \neq 0 \\
+          g(t) = b_{m}t^{m} + \cdots, b_m \neq 0 \\
+        \end{gathered}
+        \]
+
+        For existence:
+        \[
+        \begin{gathered}
+        P(n)\colon \text{for every }f\in F[t]\text{ with }\deg(f)=n, n \in \mathbb{N}, g \neq 0, \exists q, r \colon f=qg + r, \deg(r) < \deg(g) \\
+        f = 0 \colon 0 = 0 \cdot g + 0 \\
+        \deg(0) = -\infty < \deg(g)
+        \end{gathered}
+        \]
+        \begin{itemize}
+          \item base
+                \[
+                \begin{gathered}
+                  P(n) \text{ is true for } n < \deg(g) \\
+                  q=0, r=f, f=qg+r, \deg(r) = \deg(f) = n < \deg(g)
+                \end{gathered}
+                \]
+          \item induction step, assume for every $n \leq N \colon P(n)$ is true, prove it for $N + 1$.
+
+                \[
+                \begin{gathered}
+                  g_{m} \in F, F \text{ is a field }, g_{m}\neq 0 \implies \exists g_{m}^{-1} \\
+                  \text{let } a=g_{m}^{-1}f_{N+1} \\
+                  \text{let } f'=f - agt^{N+1-m} \implies \deg(f') < \deg(f) \implies
+                  f'=q'g + r \implies f=(q' + at^{N+1-m})g + r
+                \end{gathered}
+                \]
+                which concludes the induction.
+        \end{itemize}
+
+        For uniqueness assume that $\exists q', r' \colon q \neq q' \text{ or } r \neq r', f=q'g +r'$.
+        \[
+        \begin{gathered}
+          f = qg + r, f = q'g + r' \\
+          qg + r - (q'g + r') = 0 \\
+          (q - q')g + (r - r') = 0 \\
+          \deg(r) < \deg(g), \deg(r') < \deg(g) \implies \deg(r - r') < \deg(g) \implies \deg(r'-r) < \deg(g)
+        \end{gathered}
+        \]
+
+        Consider two cases:
+        \[
+        q=q' \implies r=r'
+        \]
+        contradiction with initial assumption
+
+        \[
+        \begin{gathered}
+          q \neq q' \implies \deg(q - q') \geq 0 \implies \deg((q - q')g) \geq \deg(g) \\
+          (q - q')g = r'-r \implies \deg((q-q')g) = \deg(r'-r)
+        \end{gathered}
+        \]
+        which is a contradiction since $LHS \geq \deg(g), RHS < \deg(g)$, therefore $q'=q, r'=r$.
 \end{enumerate}
 
 \end{document}
