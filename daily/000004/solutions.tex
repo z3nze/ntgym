@@ -80,6 +80,112 @@ znz
         \end{gathered}
         \]
         which is a contradiction since $LHS \geq \deg(g), RHS < \deg(g)$, therefore $q'=q, r'=r$.
+  \item
+        Let's use Euclidean algorithm for finding $\gcd(g, f)$:
+        \begin{enumerate}
+          \item if $f=0$ result is g
+          \item otherwise result is $\gcd(r, g)$ where $f=qg + r$.
+        \end{enumerate}
+
+        Such $q, r$ exist (see problem 1), $\deg(r) < \deg(g)$. Therefore steps of Euclidean algorithm will look like:
+        \[
+        \begin{gathered}
+          f=q_0g + r_0 \\
+          g=q_1r_0 + r_1 \\
+          r_0=q_2r_1 + r_2 \\
+          \cdots \\
+          r_{k-1}=q_{k+1}r_{k} + r_{k+1}, r_{k+1}=0
+        \end{gathered}
+        \]
+
+        Since $\deg(r_k)$ decreases with each step this algorithm is going to terminate in a result $d$.
+
+        Let's prove that $d \mid f, d \mid g$. To do that we will do reverse Euclidian algo steps to reconstruct $f, g$ from $d$ using existing coefficients $q_i, r_i$:
+        \[
+        \begin{gathered}
+          r_k=d, r_{k+1}=0 \\
+          d \mid r_{i}, d \mid r_{i+1}, r_{i-1}=q_{i+1}r_{i} + r_{i+1} \implies d \mid r_{i-1} \\
+          \text{therefore } d \mid r_1, d \mid r_0 \implies d \mid g, d \mid f
+        \end{gathered}
+        \]
+
+        Now let's consider an arbitrary $c$, such that $c | f, c | g$.
+        \[
+        \begin{gathered}
+          c \mid f, c \mid g \implies c \mid r_0 \\
+          c \mid g, c \mid r_0 \implies c \mid r_1 \\
+          \cdots \\
+          c \mid r_{k}, c \mid r_{k+1} \implies c \mid r_{k+2}
+        \end{gathered}
+        \]
+
+        Since $\exists k \colon d = r_k$ then $c \mid d$ for arbitrary $c$. Therefore since $d \mid f, d \mid g, d = \gcd(f, g)$.
+
+        Now since $d$ must be monic let's consider $d(t)=d_0 + d_1t + \cdots + d_{n}t^n$. Since $d_{n}\in F, F \text{ --- field} \implies \exists d_{n}^{-1} \implies d'=d_{n}^{-1}d \text{ is monic}$.
+  \item
+        \begin{enumerate}[a)]
+          \item Assume $\gcd(\pi, f)=c$, then $c \mid \pi, c \mid f$. Since $\pi$ is irreducible then $\pi=cd$, and either $c$ or $d$ is a unit. There are two possibilities:
+                \begin{itemize}
+                  \item $c$ is a unit. But then only monic unit is $1$ and $\gcd(\pi, f)=1$.
+                  \item $d$ is a unit, $c$ is an irreducible polynomial. But since $\pi$ is irreducible then $c$ and $\pi$ are from the same equivalence class. But then $\gcd(\pi, f) = \pi$ and $\pi \mid f$ which is a contradiction.
+                \end{itemize}
+          \item $\pi \mid fg$. Assume $\pi \nmid f \text{ and } \pi \nmid g \implies \gcd(\pi, f) = 1$.
+                \[
+                \begin{gathered}
+                  1 = {\pi}x + fy \\
+                  g = {\pi}gx + fgy \\
+                  \pi \mid {\pi}gx, \pi \mid fgy \implies \pi \mid g \text{ --- contradiction}
+                \end{gathered}
+                \]
+                therefore $\pi \mid f \text{ or } \pi \mid g$.
+          \item define the following algorithm. Let's say $fact(n)$ is a finite product of irreducible polynomials:
+                \begin{itemize}
+                  \item if $f$ is irreducible $fact(f) = f$
+                  \item if $f$ is reducible $\exists h,g \colon f=hg \implies fact(f)=fact(h)fact(g)$.
+                  \item $\deg(h) < \deg(f), \deg(g) < \deg(f), \deg \in \mathbb{N}$ and $<$ on $\mathbb{N}$ is well-founded. $NSTEPS(call)$ --- number of steps needed for temination.
+
+
+                        $P(n)=\forall f \colon \deg(f) = n, NSTEPS(fact(f)) < \infty$
+
+                        $P(1)$ is true since such $f$ are irreducible.
+
+                        Assume $P(n)$ is true for all $n \leq N$. Prove for $N + 1$.
+
+                        For arbitrary $f \colon \deg(f) = N+1, NSTEPS(fact(f))=1 \text{ if it's irreducible or } NSTEPS(fact(f))=NSTEPS(fact(g)) + NSTEPS(fact(h)) + 1 \text{ otheriwse } \implies P(N+1) true$.
+                \end{itemize}
+          \item consider arbitrary $\pi_i$. If $\pi_i \mid f$ then from 3.b there are two possibilities:
+                \begin{itemize}
+                  \item $\exists \rho_j \colon \pi_i \mid \rho_j$. This means that $\rho_j$ is either reducible which is a contradiction or $\rho_j=h\pi_i$ where $h \in {F[t]}^{\times}$, which means $\pi_i$ and $\rho_j$ are associates.
+                  \item $\pi_i \mid v$, but this is impossible because $\deg(v) < \deg(\pi_i)$.
+                \end{itemize}
+                To prove 1-to-1 matching of $\pi_i$ and $\rho_j$ and $r=s$ do the following:
+                \begin{itemize}
+                  \item Remove $u$ from the left hand side by multiplying both sides by $u^{-1}$ and reassigning $v=vu^{-1}$. Since all $\pi_i$ and $\rho_j$ are monic then their products leading coefficients are equal to $1$ which means $v=1$ as well and can be removed.
+                  \item Suppose $\pi_1 \cdots \pi_r = \rho_1 \cdots \rho_s$. Then $\exists j \colon \pi_1=\rho_j$.
+
+                        $F[t]$ is an integral domain $\implies$ multiplication is commutative $\implies$ we can reorder and get
+                        \[
+                        \pi_1 \cdots \pi_r = \rho_j \rho_1 \cdots \rho_{j-1} \rho_{j+1} \cdots \rho_s
+                        \]
+
+                        $F[t]$ is an integral domain $\implies 0$ has no non-zero divisors which allows cancellation and reindexing:
+                        \[
+                        \pi_2 \cdots \pi_r = \rho_2 \cdots \rho_s
+                        \]
+
+                        Since number of factors is finite this process repeats until no more factors left on left or right side of the equality.
+
+                  \item Assume $r \neq s$, for example $r < s$ then after this process ends we get
+                        \[
+                        1=\rho_k \cdots \rho_s
+                        \]
+
+                        Whicl is impossible because $\deg(1) = 0, \deg(\rho_k \cdots \rho_s) \geq 1$.
+
+                        Similarly for $r > s$. Contradiction.
+                \end{itemize}
+        \end{enumerate}
+
 \end{enumerate}
 
 \end{document}
