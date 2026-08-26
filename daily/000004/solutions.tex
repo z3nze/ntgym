@@ -185,6 +185,100 @@ znz
                         Similarly for $r > s$. Contradiction.
                 \end{itemize}
         \end{enumerate}
+  \item
+        \begin{itemize}
+          \item $F[t]/(m)$ is a field, assume $m$ is reducible. Then $m=ab, 1 \leq \deg(a), \deg(b) < \deg(m), [m]=[ab]=[a][b]=0, [a] \neq 0, [b] \neq 0$, but that means that $[a], [b]$ are non-zero zero divisors, contradiction.
+          \item $m$ is irreducible. Consider arbitrary $[f] \neq [0]$.
+                \[
+                \begin{gathered}
+                [f] \neq [0] \implies m \nmid f \implies \gcd(m, f) = 1 \implies \exists x, y \in F[t] \colon 1 = mx + fy \implies [fy] = [1] \implies \\
+                [f][y] = [1] \implies [y] = {[f]}^{-1}
+                \end{gathered}
+                \]
+                Therefore for arbitrary non-zero $[f]$ exists inverse.
+        \end{itemize}
+  \item
+        \begin{enumerate}[a)]
+          \item For arbitrary element $[f] \in K$ euclidian division for representative gives $f = qm + r$. Assume:
+                \[
+                \begin{gathered}
+                  f=q_1m + r_1=q_2m + r_2, q_1\neq q_2, r_1 \neq r_2
+                \end{gathered}
+                \]
+
+                then
+
+                \[
+                \begin{gathered}
+                  q_1m + r_1 - (q_2m + r_2) = 0 \\
+                  m(q_1 - q_2) + (r_1 - r_2) = 0 \\
+                  \deg(m) > \deg(r_1 - r_2), \deg(m) >= 1 \implies q_1 = q_2, r_1 = r_2
+                \end{gathered}
+                \]
+          \item Split $\mathbb{F}_p[t]$ into two disjoint sets:
+                \[
+                \begin{gathered}
+                  S_1 = \{f \colon \deg(f) < d\}, S_2 = \{f \colon \deg(f) \geq d\} \\
+                  \text{ by axiom of replacement } T_1 = \{[f] \colon f \in S_1\}, T_2 = \{[f] \colon f \in S_2\}
+                \end{gathered}
+                \]
+
+                From 5.a $T_2 \subseteq T_1$. For arbitrary $[f] \in T_1$ its representative has form $f(t) = a_0 + a_1t +\cdots +a_{d-1}t^{d-1}$ therefore $|T_1| = \prod_{i=0}^{d-1}|\mathbb{F}_P|$ since every coefficient $a_i$ is independent and can take any value from $\mathbb{F}_P$.
+
+                $T_1 \cup T_2 = K, T_1 \cup T_2 = T_1, |T_1| = p^d \implies |K| = p^d$.
+          \item
+                \[
+                \begin{gathered}
+                  {[t]}^{d} = [t] \times \cdots \times [t] (d times) = [t^d] \implies m(\alpha) = [t^{d}] + c_{d-1}[t^{d-1}] + \cdots + c_{1}[t] + c_0 \\
+                  \forall [t^k] \exists \text{ representative } t^k + m h_k \\
+                  t^d + mh_d + c_{d-1}(t^{d-1} + mh_{d-1}) + \cdots + c_1(t + mh_{1}) + c_0 = \\
+                  (t^d + c_{d-1}t^{d-1} + \cdots + c_1t + c_0) + m(h_d + c_{d-1}h_{d-1} + \cdots + c_1h_1) = m + m(\cdots)
+                \end{gathered}
+                \]
+
+                therfore $m(\alpha) = [0]$.
+          \item
+                From 5.a every $[f]$ has unique representative $f(t) = a_0 + a_1t + \cdots + a_{d-1}t^{d-1}$.
+                \[
+                \begin{gathered}
+                  f(alpha) = a_0 + a_1 \alpha + \cdots + a_{d-1} {\alpha}^{d-1} \\
+                \end{gathered}
+                \]
+
+                analogous to 5.c
+
+                \[
+                \begin{gathered}
+                  a_{d-1}t^{d-1} + a_{d-2}t^{d-2} + \cdots + a_0 + m(a_{d-1}h_{d-1} + a_{d-2} h_{d-2} + \cdots + a_1 h_1) \iff \\
+                  f + m(a_{d-1}h_{d-1} + a_{d-2} h_{d-2} + \cdots + a_1 h_1) \iff [f]
+                \end{gathered}
+                \]
+          \item
+                Copy of $\mathbb{F}_p$ is the following set: $FC=\{[f] \in K, f(t) = a_0, a_0 \in \mathbb{F}_p\}$. Prove bijection between $\mathbb{F}_p$ and $FC$:
+
+                \begin{itemize}
+                  \item \[
+                        \begin{gathered}
+                          \iota \colon \mathbb{F}_p\to FC, a \mapsto [a] \\
+                          \iota(a + b) = [a + b] = [a] + [b] = \iota(a) + \iota(b) \\
+                          \iota(ab) = [ab] = [a][b] = \iota(a) \iota(b)
+                        \end{gathered}
+                        \]
+
+                        Assume $a \neq b, [a] = [b]$.
+                        \[
+                        \begin{gathered}
+                          [a] = [b] \iff m \mid a - b \\
+                          \deg(a) = 0, \deg(b) = 0, \deg(a - b) = 0, \deg(m) \geq 1 \implies m \nmid (a - b)
+                        \end{gathered}
+                        \]
+                        contradiction. Injection is proven.
+                  \item Surjectivity is correct by construction, since every $f(t)$ is defined as a constant polynomial where constant is from $\mathbb{F}_p$.
+                \end{itemize}
+
+                From 5.b $|K| = p^d, |FC| = p, d > 1 \implies |K \setminus FC| = p^d - p > 0 \implies K \not\cong \mathbb{F}_p$.
+        \end{enumerate}
+
 
 \end{enumerate}
 
